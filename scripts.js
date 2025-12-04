@@ -106,3 +106,43 @@ class TableLamp extends Lamp {
 
 let tableLamp1 = new TableLamp({model: 'PO23', color: 'red', price: 40, material: 'metal'}, 'table');
 
+console.log('-----------------');
+
+/*
+    Домашка по классам
+    Задание 2
+*/
+
+class User {
+
+    constructor(dataInfo) {
+
+        this.data = {
+            id: dataInfo.id,
+            name: dataInfo.name,
+            email: dataInfo.email,
+            address: dataInfo.address,
+            phone: dataInfo.phone
+        }
+    }
+
+    get userInfo() {
+        return this.data;
+    }
+
+    edit(newData) {
+        this.data = {
+            ...this.data,
+            ...newData
+        }
+
+    }
+
+}
+
+let user1 = new User({id: 2, name: 'Alex', email: 'alex@gmail.com', address: '123 Street', phone: '124032-123'});
+console.log(user1);
+console.log(user1.userInfo);
+
+user1.edit({id: 3, name: 'Sam', email: 'sam@gmail.com', address: '982 Street', phone: '0932-323112'});
+console.log(user1);
