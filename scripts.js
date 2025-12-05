@@ -135,14 +135,59 @@ class User {
             ...this.data,
             ...newData
         }
-
     }
+
 
 }
 
-let user1 = new User({id: 2, name: 'Alex', email: 'alex@gmail.com', address: '123 Street', phone: '124032-123'});
-console.log(user1);
-console.log(user1.userInfo);
+let moris = new User({id: 5, name: 'Moris', email: 'moris@gmail.com', address: 'Street', phone: '1243-34313'});
+let glam = new User({id: 6, name: 'Glam', email: 'glam@gmail.com', address: '49 Street', phone: '0232-34241'});
+let alex = new User({id: 2, name: 'Alex', email: 'alex@gmail.com', address: '123 Street', phone: '124032-123'});
+let sam = new User({id: 3, name: 'Sam', email: 'sam@gmail.com', address: '982 Street', phone: '0932-323112'});
 
-user1.edit({id: 3, name: 'Sam', email: 'sam@gmail.com', address: '982 Street', phone: '0932-323112'});
-console.log(user1);
+console.log(sam.data.id);
+
+/*Задание 2 - class Contacts*/
+
+class Contacts {
+
+    constructor() {
+        this.contactsData = [];
+        this.targetObj = null;
+    }
+
+    add(contact) {
+        let userObj = new User(contact);
+        this.contactsData.push(userObj);
+    }
+    
+
+     edit(id, newObj) {
+        this.targetObj = this.contactsData.find(contact => contact.data.id === id);
+
+        if(!this.targetObj) {
+            console.log('Контакт не найден');
+            return;
+        }
+
+        this.targetObj.edit(newObj);
+        return this.targetObj;
+
+    }
+
+    remove(id) {
+        const index = this.contactsData.findIndex(contact => contact.data.id === id);
+
+        if (index === -1) {
+            console.log('Контакт с таким id не найден');
+            return;
+        }
+
+        this.contactsData.splice(index, 1);
+
+    }
+
+    get contactInfo() {
+        return this.contactsData.map(user => user.data)
+    } 
+}
